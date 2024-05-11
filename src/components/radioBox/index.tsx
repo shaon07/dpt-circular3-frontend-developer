@@ -20,8 +20,8 @@ export default function RadioBox({
   return (
     <div className="flex items-center gap-2">
       {label && <label className="font-medium">{label}</label>}
-      {options.map((option) => (
-        <div className="flex items-center ">
+      {options.map((option, index) => (
+        <div className="flex items-center " key={index+Date.now()}>
           <input
             type="radio"
             name="dd"

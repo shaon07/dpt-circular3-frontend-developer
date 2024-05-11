@@ -23,6 +23,7 @@ export default function ButtonGroup({
       {options?.map((option: React.ReactNode, index: number) => {
         return (
           <Button
+          key={index}
             variant={active === index ? "primary" : "secondary"}
             onClick={() => {
               setActive(index);

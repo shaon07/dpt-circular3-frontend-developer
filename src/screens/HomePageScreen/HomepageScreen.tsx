@@ -38,11 +38,11 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
     
     const render = {
       flight: (
-        <span className="flex flex-col">
+        <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, index) => {
+            return item?.segments?.map((segment, _index) => {
               return (
-                <span>
+                <span key={_index}>
                   {segment?.carrierCode} {segment?.aircraft}
                 </span>
               );
@@ -52,41 +52,41 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
       ),
 
       aircraft: (
-        <span className="flex flex-col">
+        <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, index) => {
-              return <span>{segment?.flightNumber}</span>;
+            return item?.segments?.map((segment, _index) => {
+              return <span key={_index}>{segment?.flightNumber}</span>;
             });
           })}
         </span>
       ),
 
       class: (
-        <div className="flex flex-col">
-          {flight?.class?.map((cls, index) => {
-            return cls?.map((item) => {
-              return <span key={index}>{item}</span>;
+        <div key={"class"} className="flex flex-col">
+          {flight?.class?.map((cls) => {
+            return cls?.map((item, _index) => {
+              return <span key={_index}>{item}</span>;
             });
           })}
         </div>
       ),
 
       fareBasis: (
-        <div className="flex flex-col">
-          {flight?.fareBasis?.map((fare, index) => {
-            return fare?.map((item) => {
-              return <span key={index}>{item}</span>;
+        <div key={"fareBasis"} className="flex flex-col">
+          {flight?.fareBasis?.map((fare, ) => {
+            return fare?.map((item,_index) => {
+              return <span key={_index}>{item}</span>;
             });
           })}
         </div>
       ),
 
       route: (
-        <span className="flex flex-col">
+        <span key={"route"} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, index) => {
+            return item?.segments?.map((segment, _index) => {
               return (
-                <span>
+                <span key={_index}>
                   {segment?.arrival?.iataCode}-{segment?.departure?.iataCode}
                 </span>
               );
@@ -96,35 +96,35 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
       ),
 
       departure: (
-        <span className="flex flex-col">
+        <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
             return item?.segments?.map((segment, index) => {
-              return <span>{moment(segment?.departure?.at).format("lll")}</span>;
+              return <span key={index}>{moment(segment?.departure?.at).format("lll")}</span>;
             });
           })}
         </span>
       ),
 
       arrival: (
-        <span className="flex flex-col">
+        <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
             return item?.segments?.map((segment, index) => {
-              return <span>{moment(segment?.arrival?.at).format("lll")}</span>;
+              return <span key={index}>{moment(segment?.arrival?.at).format("lll")}</span>;
             });
           })}
         </span>
       ),
 
       duration: (
-        <span className="flex flex-col">
+        <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
-            return <span>{item?.duration}</span>;
+            return <span key={index}>{item?.duration}</span>;
           })}
         </span>
       ),
 
       price: (
-        <span className="flex justify-center items-center flex-col">
+        <span key={index} className="flex justify-center items-center flex-col">
           <span>{flight?.price}</span>
           <Button>
             Select

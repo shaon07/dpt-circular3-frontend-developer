@@ -31,7 +31,7 @@ export default function Table({ data = [], columns = [] }: tableType) {
                 {columns?.map((_column, _index) => (
                   <td
                     scope="row"
-                    key={index}
+                    key={_index}
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {data[index][_index]}

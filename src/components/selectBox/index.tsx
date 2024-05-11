@@ -38,11 +38,11 @@ export default function SelectBox({
         onChange={(e) => onChange(e.target.value)}
         className={`${styles.default} ${className} w-full`}
       >
-        <option disabled selected>
+        <option disabled defaultChecked>
             {placeholder}
         </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
+        {options.map((option, index) => (
+          <option key={index+ Date.now()} value={option.value}>
             {option.label}
           </option>
         ))}
