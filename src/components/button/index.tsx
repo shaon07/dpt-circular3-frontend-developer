@@ -3,7 +3,7 @@ import React from "react";
 import { styles } from "./styles.css";
 
 type ButtonType = {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outlined";
   type?: "button" | "submit" | "reset";
   children: React.ReactNode;
   onClick?: (data?: any) => void;
