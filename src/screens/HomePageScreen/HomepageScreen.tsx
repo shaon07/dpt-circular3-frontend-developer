@@ -1,4 +1,5 @@
 import ButtonGroup from "../../components/buttonGroup";
+import CheckBox from "../../components/checkBox";
 import InputBox from "../../components/inputBox";
 import Navbar from "../../components/navbar";
 import SelectBox from "../../components/selectBox";
@@ -22,7 +23,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
         <ButtonGroup options={buttonOptions.options} />
       </div>
 
-      <hr className="h-px mt-4 my-3 bg-gray-200 border-0 dark:bg-gray-700" />
+      <hr className="h-px mt-4 my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
       <div className="flex items-center gap-2">
         <InputBox />
         <InputBox />
@@ -73,8 +74,11 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
           </div>
         </div>
       </div>
+      <hr className="h-px my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
 
-      <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
+      <div>
+        <CheckBox label="Extra Options" />
+      </div>
     </div>
   );
 }
