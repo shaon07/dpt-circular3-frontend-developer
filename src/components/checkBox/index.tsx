@@ -10,7 +10,7 @@ type checkboxType = {
 export default function CheckBox({label = "", className = "", onChange = () => {}, disabled = false}:checkboxType) {
 
   return (
-    <div className="flex items-center mb-4">
+    <div className="flex items-center ">
       <input
         type="checkbox"
         disabled={disabled}
