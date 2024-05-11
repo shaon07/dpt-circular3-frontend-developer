@@ -1,6 +1,7 @@
 import Button from "../../components/button";
 import ButtonGroup from "../../components/buttonGroup";
 import CheckBox from "../../components/checkBox";
+import Divider from "../../components/divider";
 import InputBox from "../../components/inputBox";
 import Navbar from "../../components/navbar";
 import RadioBox from "../../components/radioBox";
@@ -25,7 +26,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
         <ButtonGroup options={buttonOptions.options} />
       </div>
 
-      <hr className="h-px mt-4 my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
+      <Divider />
       <div className="flex items-center gap-2">
         <InputBox />
         <InputBox />
@@ -76,7 +77,8 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
           </div>
         </div>
       </div>
-      <hr className="h-px my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
+
+      <Divider />
 
       <div className="flex items-center gap-2 justify-between">
         <CheckBox label="Extra Options" />
@@ -84,7 +86,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
         <Button>Search</Button>
       </div>
 
-      <hr className="h-px my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
+      <Divider />
     </form>
   );
 }
