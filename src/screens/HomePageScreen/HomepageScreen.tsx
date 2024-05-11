@@ -1,7 +1,9 @@
+import Button from "../../components/button";
 import ButtonGroup from "../../components/buttonGroup";
 import CheckBox from "../../components/checkBox";
 import InputBox from "../../components/inputBox";
 import Navbar from "../../components/navbar";
+import RadioBox from "../../components/radioBox";
 import SelectBox from "../../components/selectBox";
 
 type HomePageContainerType = {
@@ -18,7 +20,7 @@ const buttonOptions = {
 
 export default function HomepageScreen({ scaffold }: HomePageContainerType) {
   return (
-    <div>
+    <form>
       <div>
         <ButtonGroup options={buttonOptions.options} />
       </div>
@@ -76,9 +78,13 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
       </div>
       <hr className="h-px my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
 
-      <div>
+      <div className="flex items-center gap-2 justify-between">
         <CheckBox label="Extra Options" />
+        <RadioBox label="Environment"  options={[{ value: "1", label: "Dummy" }, { value: "2", label: "PDT" }]} />
+        <Button>Search</Button>
       </div>
-    </div>
+
+      <hr className="h-px my-3 bg-[#2E3791] border-0 dark:bg-gray-700" />
+    </form>
   );
 }
