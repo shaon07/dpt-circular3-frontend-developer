@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import moment from "moment";
 import Button from "../../components/button";
 import ButtonGroup from "../../components/buttonGroup";
@@ -21,26 +22,66 @@ const buttonOptions = {
 };
 
 export default function HomepageScreen({ scaffold }: HomePageContainerType) {
-
   const tableColumns = [
-    <span>FLIGHT</span>,
-    <span>AIRCRAFT</span>,
-    <span>CLASS</span>,
-    <span>FARE</span>,
-    <span>ROUTE</span>,
-    <span>DEPARTURE</span>,
-    <span>ARRIVAL</span>,
-    <span>DURATION</span>,
-    <span>PRICE</span>,
+    {
+      title: <span>FLIGHT</span>,
+      dataIndex: "flight",
+      key: "flight",
+    },
+    {
+      title: <span>AIRCRAFT</span>,
+      dataIndex: "aircraft",
+      key: "aircraft",
+    },
+    {
+      title: <span>CLASS</span>,
+      dataIndex: "class",
+      key: "class",
+    },
+    {
+      title: <span>FARE</span>,
+      dataIndex: "fare",
+      key: "fare",
+    },
+    {
+      title: <span>ROUTE</span>,
+      dataIndex: "route",
+      key: "route",
+    },
+    {
+      title: <span>DEPARTURE</span>,
+      dataIndex: "departure",
+      key: "departure",
+    },
+    {
+      title: <span>ARRIVAL</span>,
+      dataIndex: "arrival",
+      key: "arrival",
+    },
+    {
+      title: <span>DURATION</span>,
+      dataIndex: "duration",
+      key: "duration",
+    },
+    {
+      title: <span>PRICE</span>,
+      dataIndex: "price",
+      key: "price",
+    },
   ];
 
   const tableData = scaffold.flightData?.map((flight, index) => {
-    
+    const segments = flight?.itineraries
+      ?.map((itinerary) => itinerary)
+      ?.map((itinerary) => itinerary?.segments);
+
+    const flightClass = flight?.class;
+
     const render = {
       flight: (
         <span key={index} className="flex flex-col">
-          {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, _index) => {
+          {segments?.map((item) => {
+            return item?.map((segment, _index) => {
               return (
                 <span key={_index}>
                   {segment?.carrierCode} {segment?.aircraft}
@@ -53,8 +94,8 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       aircraft: (
         <span key={index} className="flex flex-col">
-          {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, _index) => {
+          {segments?.map((item) => {
+            return item?.map((segment, _index) => {
               return <span key={_index}>{segment?.flightNumber}</span>;
             });
           })}
@@ -63,7 +104,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       class: (
         <div key={"class"} className="flex flex-col">
-          {flight?.class?.map((cls) => {
+          {flightClass?.map((cls) => {
             return cls?.map((item, _index) => {
               return <span key={_index}>{item}</span>;
             });
@@ -73,8 +114,8 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       fareBasis: (
         <div key={"fareBasis"} className="flex flex-col">
-          {flight?.fareBasis?.map((fare, ) => {
-            return fare?.map((item,_index) => {
+          {flight?.fareBasis?.map((fare) => {
+            return fare?.map((item, _index) => {
               return <span key={_index}>{item}</span>;
             });
           })}
@@ -83,8 +124,8 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       route: (
         <span key={"route"} className="flex flex-col">
-          {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, _index) => {
+          {segments?.map((item) => {
+            return item?.map((segment, _index) => {
               return (
                 <span key={_index}>
                   {segment?.arrival?.iataCode}-{segment?.departure?.iataCode}
@@ -97,9 +138,13 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       departure: (
         <span key={index} className="flex flex-col">
-          {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, index) => {
-              return <span key={index}>{moment(segment?.departure?.at).format("lll")}</span>;
+          {segments?.map((item) => {
+            return item?.map((segment, index) => {
+              return (
+                <span key={index}>
+                  {moment(segment?.departure?.at).format("lll")}
+                </span>
+              );
             });
           })}
         </span>
@@ -107,9 +152,13 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       arrival: (
         <span key={index} className="flex flex-col">
-          {flight?.itineraries?.map((item) => {
-            return item?.segments?.map((segment, index) => {
-              return <span key={index}>{moment(segment?.arrival?.at).format("lll")}</span>;
+          {segments?.map((item) => {
+            return item?.map((segment, index) => {
+              return (
+                <span key={index}>
+                  {moment(segment?.arrival?.at).format("lll")}
+                </span>
+              );
             });
           })}
         </span>
@@ -118,7 +167,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
       duration: (
         <span key={index} className="flex flex-col">
           {flight?.itineraries?.map((item) => {
-            return <span key={index}>{item?.duration}</span>;
+            return <span key={index}>{item?.duration || "cc"}</span>;
           })}
         </span>
       ),
@@ -126,9 +175,7 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
       price: (
         <span key={index} className="flex justify-center items-center flex-col">
           <span>{flight?.price}</span>
-          <Button>
-            Select
-          </Button>
+          <Button>Select</Button>
         </span>
       ),
     };
@@ -144,9 +191,9 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
 
       <Divider />
       <div className="flex items-center gap-2">
-        <InputBox />
-        <InputBox />
-        <InputBox type="date" />
+        <InputBox value="LHR" />
+        <InputBox value="CDG" />
+        <InputBox value="2022-01-01" type="date" />
 
         <div className="flex items-center gap-2 w-full">
           <SelectBox
@@ -205,14 +252,16 @@ export default function HomepageScreen({ scaffold }: HomePageContainerType) {
             { value: "2", label: "PDT" },
           ]}
         />
-        <Button>Search</Button>
+        <Button onClick={scaffold.getFlightData}>Search</Button>
       </div>
 
       <Divider />
 
-      <div>
-        <Table data={tableData} columns={tableColumns} />
-      </div>
+      {scaffold.flightData?.length > 0 && (
+        <div>
+          <Table data={tableData} columns={tableColumns} />
+        </div>
+      )}
     </form>
   );
 }

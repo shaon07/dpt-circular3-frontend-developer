@@ -18,7 +18,7 @@ export default function Table({ data = [], columns = [] }: tableType) {
                 key={index}
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                {column}
+                {column?.title}
               </th>
             ))}
           </tr>
