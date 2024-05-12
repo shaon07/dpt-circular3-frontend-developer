@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { styles } from "./styles.css";
 
 type selectBoxType = {

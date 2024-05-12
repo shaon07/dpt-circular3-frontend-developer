@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HomepageScreen from "../../screens/HomePageScreen/HomepageScreen";
 import rawText from "../../../data/LHR_CDG_ADT1_TYPE_1.txt";
 
