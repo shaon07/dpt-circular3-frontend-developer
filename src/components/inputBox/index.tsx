@@ -2,6 +2,7 @@ import React from "react";
 import { styles } from "./styles.css";
 
 type inputBoxType = {
+  value?: string;
   label?: string;
   placeholder?: string;
   type?: string;
@@ -12,6 +13,7 @@ type inputBoxType = {
 
 export default function InputBox({
   label = "",
+  value = "",
   placeholder = "",
   type = "text",
   className = "",
@@ -27,6 +29,7 @@ export default function InputBox({
       )}
       <input
         type={type}
+        value={value}
         className={`${styles.input} ${className}`}
         placeholder={placeholder}
         required={required}

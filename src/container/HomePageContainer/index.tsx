@@ -6,18 +6,17 @@ import rawText from "../../../data/LHR_CDG_ADT1_TYPE_1.txt";
 export default function HomePageContainer() {
   const [flightData, setFlightData] = useState<any[]>([]);
 
-  const appScaffold = {
+  const appScaffold:any = {
     flightData,
   };
 
-  useEffect(() => {
+  appScaffold.getFlightData = () => {
     fetch(rawText)
       .then((r) => r.json())
       .then((text) => {
         setFlightData(text?.flightOffer);
       });
-  }, []);
-
+  };
 
   return (
     <div>
